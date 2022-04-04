@@ -1,5 +1,5 @@
 {
-  "name": "@onreal/vue-signalr",
+  "name": "@upio/vue-signalr",
   "version": "2.0.3",
   "description": "Signalr client for vue js",
   "main": "dist/vue-signalr.js",
