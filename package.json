@@ -1,6 +1,6 @@
 {
   "name": "@onreal/vue-signalr",
-  "version": "2.0.4a",
+  "version": "2.0.4b",
   "description": "Signalr client for vue js",
   "main": "dist/vue-signalr.js",
   "files": [
@@ -21,7 +21,9 @@
     "vuejs",
     "signalr"
   ],
-  "contributors": ["L'Atelier <hello@latelier.co>"],
+  "contributors": [
+    "L'Atelier <hello@latelier.co>"
+  ],
   "author": "Margarit <margarit@upio.gr>",
   "license": "MIT",
   "bugs": {
