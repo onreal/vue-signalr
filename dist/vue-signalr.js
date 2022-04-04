@@ -268,7 +268,7 @@ var SocketConnection = function (_EventEmitter) {
       this.listened.push(method);
 
       this.on('init', function () {
-        _this3.socsket.on(method, function (data) {
+        _this3.socket.on(method, function (data) {
           if (_this3.options.log) console.log({ type: 'receive', method: method, data: data });
 
           _this3.emit(method, data);
