@@ -28,7 +28,7 @@ class SocketConnection extends EventEmitter {
         .withUrl(con)
         .withAutomaticReconnect()
         .build()
-        
+
       socket.connection.onclose = async (error) => {
         if (this._isMounted) {
           if (this.options.log) console.log('Reconnecting...');
@@ -46,7 +46,7 @@ class SocketConnection extends EventEmitter {
       this._isMounted = true;
       this.emit('init');
     } catch (error) {
-      if (this.options.log) console.log('Error, reconnecting...');
+      if (this.options.log) console.log('Error, reconnecting...', error);
 
       setTimeout(() => {
         this._initialize(con);
