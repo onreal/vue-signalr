@@ -1,5 +1,5 @@
 {
-  "name": "@upio/vue-signalr",
+  "name": "@onreal/vue-signalr",
   "version": "2.0.3",
   "description": "Signalr client for vue js",
   "main": "dist/vue-signalr.js",
@@ -21,7 +21,8 @@
     "vuejs",
     "signalr"
   ],
-  "author": "L'Atelier <hello@latelier.co>",
+  "contributors": ["L'Atelier <hello@latelier.co>"],
+  "author": "Margarit <margarit@upio.gr>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/onreal/vue-signalr/issues"
