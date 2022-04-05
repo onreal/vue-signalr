@@ -207,12 +207,20 @@ var SocketConnection = function (_EventEmitter) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                this._isMounted = false;
+                if (!(typeof this.socket.stop !== 'function')) {
+                  _context4.next = 2;
+                  break;
+                }
 
-                _context4.next = 3;
+                return _context4.abrupt('return');
+
+              case 2:
+                this._isMounted = false;
+                this.emit('destroy');
+                _context4.next = 6;
                 return this.socket.stop();
 
-              case 3:
+              case 6:
               case 'end':
                 return _context4.stop();
             }
@@ -266,13 +274,22 @@ var SocketConnection = function (_EventEmitter) {
         return v === method;
       })) return;
       this.listened.push(method);
+      var callback = function callback(data) {
+        if (_this3.options.log) console.log({ type: 'receive', method: method, data: data });
+
+        _this3.emit(method, data);
+      };
 
       this.on('init', function () {
-        _this3.socket.on(method, function (data) {
-          if (_this3.options.log) console.log({ type: 'receive', method: method, data: data });
+        _this3.socket.on(method, callback);
+      });
 
-          _this3.emit(method, data);
-        });
+      this.on('destroy', function () {
+        console.log('destroyiing everything');
+        if (!_this3.socket) {
+          return;
+        }
+        _this3.socket.off(method);
       });
     }
   }, {
@@ -404,7 +421,11 @@ function install(Vue, connection) {
     created: function created() {
       var _this6 = this;
 
+      if (this.$socket.socket) {
+        return;
+      }
       if (this.$options.sockets) {
+        console.log('options', this.$options.sockets);
         var methods = (0, _getOwnPropertyNames2.default)(this.$options.sockets);
 
         methods.forEach(function (method) {

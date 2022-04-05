@@ -61,8 +61,11 @@ class SocketConnection extends EventEmitter {
   }
 
   async stop() {
+    if (typeof this.socket.stop !== 'function') {
+      return
+    }
     this._isMounted = false;
-
+    this.emit('destroy');
     await this.socket.stop();
   }
 
@@ -78,13 +81,21 @@ class SocketConnection extends EventEmitter {
 
     if (this.listened.some(v => v === method)) return;
     this.listened.push(method);
+    const callback = (data) => {
+      if (this.options.log) console.log({ type: 'receive', method, data });
+
+      this.emit(method, data);
+    };
 
     this.on('init', () => {
-      this.socket.on(method, (data) => {
-        if (this.options.log) console.log({ type: 'receive', method, data });
+      this.socket.on(method, callback);
+    });
 
-        this.emit(method, data);
-      });
+    this.on('destroy', () => {
+      if (!this.socket) {
+        return
+      }
+      this.socket.off(method);
     });
   }
 
@@ -141,6 +152,9 @@ function install(Vue, connection) {
   Vue.mixin({
 
     created() {
+      if (this.$socket.socket) {
+        return;
+      }
       if (this.$options.sockets) {
         const methods = Object.getOwnPropertyNames(this.$options.sockets);
 
