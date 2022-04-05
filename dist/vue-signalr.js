@@ -285,7 +285,6 @@ var SocketConnection = function (_EventEmitter) {
       });
 
       this.on('destroy', function () {
-        console.log('destroyiing everything');
         if (!_this3.socket) {
           return;
         }
@@ -425,7 +424,6 @@ function install(Vue, connection) {
         return;
       }
       if (this.$options.sockets) {
-        console.log('options', this.$options.sockets);
         var methods = (0, _getOwnPropertyNames2.default)(this.$options.sockets);
 
         methods.forEach(function (method) {
