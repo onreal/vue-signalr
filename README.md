@@ -1,5 +1,10 @@
 # vue-signalr
+This is a for from original vue-signalr from @latelier. On this fork you are able to :
+* use the .stop() method in order to stop signalr process
+* when you set options log to false then, also microsoft signalr logs are disabled
+* many bug fixes and optimizations from the original package
 
+Enjoy!
 
 ## Installation
 
