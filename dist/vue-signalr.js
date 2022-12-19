@@ -98,7 +98,7 @@ var SocketConnection = function (_EventEmitter) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 con = connection || this.connection;
-                                logLevel = this.options.log ? _signalr.LogLevel.Information : _signalr.LogLevel.None;
+                                logLevel = this.options.log ? SignalR.LogLevel.Information : SignalR.LogLevel.None;
                                 _context2.prev = 2;
                                 socket = new SignalR.HubConnectionBuilder().withUrl(con).withAutomaticReconnect().configureLogging(logLevel).build();
 

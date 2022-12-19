@@ -1,5 +1,4 @@
 import * as SignalR from '@microsoft/signalr';
-import {LogLevel} from "@microsoft/signalr";
 
 const EventEmitter = require('events');
 
@@ -23,7 +22,7 @@ class SocketConnection extends EventEmitter {
 
     async _initialize(connection = '') {
         const con = connection || this.connection;
-        const logLevel = this.options.log ? LogLevel.Information : LogLevel.None
+        const logLevel = this.options.log ? SignalR.LogLevel.Information : SignalR.LogLevel.None
         try {
             const socket = new SignalR.HubConnectionBuilder()
                 .withUrl(con)
