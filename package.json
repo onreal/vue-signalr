@@ -1,6 +1,6 @@
 {
   "name": "@onreal/vue-signalr",
-  "version": "2.0.6a",
+  "version": "2.0.7",
   "description": "Signalr client for vue js by onreal",
   "main": "dist/vue-signalr.js",
   "files": [

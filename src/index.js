@@ -32,8 +32,9 @@ class SocketConnection extends EventEmitter {
 
             socket.connection.onclose = async (error) => {
                 if (this._isMounted) {
-                    if (this.options.log) console.log('Reconnecting...');
-
+                    if (this.options.log) console.log('Reconnecting...', error);
+                    if (this.options.forbiddenRestartExceptions
+                        && this.options.forbiddenRestartExceptions.contains(error)) return;
                     this.socket = false;
                     /* eslint-disable no-underscore-dangle */
                     await this._initialize(con);
